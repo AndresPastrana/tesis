@@ -4,22 +4,24 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev" : "nodemon index.js",
+    "dev": "nodemon index.js",
     "start": "node index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.1.3",
+    "dotenv": "^16.1.4",
     "express": "^4.18.2",
-    "hbs": "^4.2.0"
+    "hbs": "^4.2.0",
+    "mongoose": "^7.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
   },
   "nodemonConfig": {
-    "ignore": ["**/test/**", "**/docs/**"],
-    "delay": 2500,
-    "ext" : "js,mjs,json,css,hbs"
+    "ignore": [
+      "**/test/**",
+      "**/docs/**"
+    ],
+    "ext": "js,mjs,json,css,hbs"
   }
-  
 }
