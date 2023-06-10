@@ -13,8 +13,9 @@ const cors = require('cors');
 const express = require("express");
 const { sendEmail } = require('./middlewares/sendEmail');
 
-// TODO: remove this later ono
-const {validateEmails,getStringifyEmails} = require("./helpers/index")
+// TODO: remove this later on
+const {validateEmails,getStringifyEmails} = require("./helpers/index");
+const { searchRouter } = require('./routes');
 
 // Express Application
 const app = express();
@@ -25,7 +26,9 @@ app.set('views', path.join(__dirname, './views/')) //Views path
 require('./helpers/hbs');
 require('hbs').registerPartials(path.join(__dirname, './views/partials'))
 
-
+const apiPaths = {
+    search : '/api/search'
+};
 
 // Global middlewraes here
 app.use(cors({
@@ -44,7 +47,7 @@ app.use(express.static('public'));//Chek for static files
 app.use('/info', (req, resp) => {
     resp.render('info', { req })
 })
-
+app.use(apiPaths.search,searchRouter)
 app.get('/email', (req, resp) => {
     const notifyTo = ["andreserluis@upr.edu.cu", "andrespastrana363@gmail.com", "ndresernestopastrana@gmail.com", "odalysacostaleon@gmail.com", "hildelisaalvarezsoto@gmail.com", "lisbethpt04@gmail.com"]
      const areValidEmails = validateEmails(notifyTo);
